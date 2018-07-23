@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "~/Views/Shared/_CustomLayoutOne.cshtml";
+}
+@*<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />*@
+
+
+<div class="content-body">
+    <!-- Basic Tables start -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Basic Tables</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+                        <p><span class="text-bold-600">Example 1:</span> Table with outer spacing</p>
+                        <div class="table-responsive">
+                            <table id="orderList" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Item Name</th>
+                                        <th>Item Quantity</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/sb-admin-2.js"></script>
+    <script src="~/Scripts/metisMenu.min.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/dataTables.responsive.js"></script>*@
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#orderList').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "/Order/GetItemJsonData",
+                "type": "POST",
+                "datatype": "json",
+                //lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],	//to add all button
+                pageLength: 10,	//to make default
+
+                columnDefs: [{
+                    render: function (data, type, row) {
+                        return "<a class='btn btn-info btn-dt' href='/Order/Index'><i class='fa fa-hand-o-left'></i></a>";
+                    },
+
+                    targets: 4
+                }
+                ]
+            });
+        });
+
+                    //function showModal(id) {
+                    //    $("#id").val(id);
+                    //    $('.modal').modal('show')
+                    //}
+
+    </script>
+
+}

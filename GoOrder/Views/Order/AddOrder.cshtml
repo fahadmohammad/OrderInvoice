@@ -1,0 +1,179 @@
+﻿@model GoOrder.Models.OrderModel
+@{
+    ViewBag.Title = "AddOrder";
+    Layout = "~/Views/Shared/_CustomLayoutOne.cshtml";
+}
+
+
+@*<section class="content">
+    <div class="row">
+        <form class="form" action="/Order/AddOrder" method="post" role="form" enctype="multipart/form-data">
+
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Item Name</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Item Quantity</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.ItemQuantity, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Status</label>
+                    <div class="col-sm-9 form-radio">
+
+                        Paid @Html.RadioButtonFor(m => m.Invoice.IsPaid, "True", new { @class = "form-control" })
+                       <span> Not Paid @Html.RadioButtonFor(m => m.Invoice.IsPaid, "False", new { @class = "form-control" }) </span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary col-sm-2">Submit</button>
+                    </div>
+                </div>
+</form>
+    </div>
+</section>*@
+<section id="basic-form-layouts">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-card-center">Event Registration</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block">
+                        <div class="card-text">
+                            <p>This example shows a ways to center your card with form. Here we have used <code>col-md-6 offset-md-3</code> classes to center the card as its not full width. User can always change those classes according to width and offset requirements. This example also uses form action buttons in the center bottom position of the card.</p>
+                        </div>
+                        <form class="form" action="/Order/AddOrder" method="post" role="form" enctype="multipart/form-data">
+                            <div class="form-body">
+                                <h3>Item #1</h3>
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Customer Name</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Item Name</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.Items[0].Name, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput2">Item Quantity</label>
+                                    @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
+                                    @Html.TextBoxFor(m => m.Items[0].Quantity, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput2">Item Price</label>
+                                    @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
+                                    @Html.TextBoxFor(m => m.Items[0].Price, new { @class = "form-control" })
+                                </div>
+                                <h3>Item #2</h3>
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Item Name</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.Items[1].Name, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput2">Item Quantity</label>
+                                    @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
+                                    @Html.TextBoxFor(m => m.Items[1].Quantity, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput2">Item Price</label>
+                                    @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
+                                    @Html.TextBoxFor(m => m.Items[1].Price, new { @class = "form-control" })
+                                </div>
+
+                                <h3>Invoice #1</h3>
+                                <div class="form-group">
+                                    <label>Do You Want To Create Invoice For This Order?</label>
+                                    <div class="input-group">
+                                        <label class="display-inline-block custom-control custom-radio ml-1">
+                                            @*<input type="radio" name="customer" class="custom-control-input">*@
+                                            @Html.RadioButtonFor(m => m.Invoices[0].IsCreated, "True", new { @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description ml-0">Yes</span>
+                                        </label>
+                                        <label class="display-inline-block custom-control custom-radio">
+                                            @*<input type="radio" name="customer" checked class="custom-control-input">*@
+                                            @Html.RadioButtonFor(m => m.Invoices[0].IsCreated, "False", new { @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description ml-0">No</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Invoice Amount</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.Invoices[0].Amount, new { @class = "form-control" })
+                                </div>
+
+                                <h3>Invoice #2</h3>
+                                <div class="form-group">
+                                    <label>Do You Want To Create Another Invoice For This Order?</label>
+                                    <div class="input-group">
+                                        <label class="display-inline-block custom-control custom-radio ml-1">
+                                            @*<input type="radio" name="customer" class="custom-control-input">*@
+                                            @Html.RadioButtonFor(m => m.Invoices[1].IsCreated, "True", new { @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description ml-0">Yes</span>
+                                        </label>
+                                        <label class="display-inline-block custom-control custom-radio">
+                                            @*<input type="radio" name="customer" checked class="custom-control-input">*@
+                                            @Html.RadioButtonFor(m => m.Invoices[1].IsCreated, "False", new { @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description ml-0">No</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Invoice Amount</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.Invoices[1].Amount, new { @class = "form-control" })
+                                </div>
+
+
+                                @*<div class="form-group">
+            <label for="eventRegInput3">Company</label>
+            <input type="text" id="eventRegInput3" class="form-control" placeholder="company" name="company">
+        </div>
+        <div class="form-group">
+            <label for="eventRegInput4">Email</label>
+            <input type="email" id="eventRegInput4" class="form-control" placeholder="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="eventRegInput5">Contact Number</label>
+            <input type="tel" id="eventRegInput5" class="form-control" name="contact" placeholder="contact number">
+        </div>*@
+                                
+                            </div>
+                            <div class="form-actions center">                               
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="icon-check2"></i> Create Order
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Repository.dll.config
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Repository.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Repository.pdb
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\EntityFramework.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Data.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Entities.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\System.Linq.Dynamic.dll
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Data.pdb
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Data.dll.config
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\GoOrder.Entities.pdb
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\EntityFramework.xml
+D:\Repository\GoOrder\GoOrder.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Repository\GoOrder\GoOrder.Repository\obj\Debug\GoOrder.Repository.csprojResolveAssemblyReference.cache
+D:\Repository\GoOrder\GoOrder.Repository\obj\Debug\GoOrder.Repository.csproj.CoreCompileInputs.cache
+D:\Repository\GoOrder\GoOrder.Repository\obj\Debug\GoOrder.Repository.dll
+D:\Repository\GoOrder\GoOrder.Repository\obj\Debug\GoOrder.Repository.pdb

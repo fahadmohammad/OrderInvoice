@@ -1,0 +1,147 @@
+﻿@model GoOrder.Models.InvoiceModel
+@{
+    ViewBag.Title = "InvoiceDetails";
+    Layout = "~/Views/Shared/_CustomLayoutOne.cshtml";
+}
+
+<div class="content-body">
+    <!-- Basic Tables start -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Basic Tables</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+                        <p><span class="text-bold-600">Example 1:</span> Table with outer spacing</p>
+                        <div class="table-responsive">
+                            <table id="orderList" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Amount(Tk)</th>
+                                        <th>Create Date</th>
+                                        <th>Paid?</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/Order/UpdateInvoice" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">                       
+                        <label>Do You Want To Make Payment For This Invoice?</label>
+                        <div class="input-group">
+                            <label class="display-inline-block custom-control custom-radio ml-1">
+                                @*<input type="radio" name="customer" class="custom-control-input">*@
+                                @Html.RadioButtonFor(m => m.IsPaid, "True", new { @class = "custom-control-input" })
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description ml-0">Yes</span>
+                            </label>
+                            <label class="display-inline-block custom-control custom-radio">
+                                @*<input type="radio" name="customer" checked class="custom-control-input">*@
+                                @Html.RadioButtonFor(m => m.IsPaid, "False", new { @class = "custom-control-input" })
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description ml-0">No</span>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" value="" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Yes!</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @*<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.jeditable.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.dataTables.editable.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/dataTables.responsive.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#orderList').dataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "/Order/GetInvoiceJsonData",
+                "type": "POST",
+                "datatype": "json",
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],	//to add all button
+                pageLength: 10,	//to make default
+
+                columnDefs: [
+                    {
+                        orderable: false,
+                        render: function (data, type, row) {
+
+                            return data == 'True' ? "<span class='glyphicon glyphicon-ok text-green'></span>" : "<span class='glyphicon glyphicon-remove text-red'></span>"
+                        },
+                        targets: 3
+                    },
+                    {
+                        render: function (data, type, row) {
+                            return "<a class='btn btn-info btn-dt' href='/Order/Index'><i class='fa fa-hand-o-left'></i></a><a href='#' class='btn btn-success btn-dt' onclick=showModal('" + data + "');><i class='fa fa-money'></i></a>";
+                        },
+
+                        targets: 4
+                    }
+                ]
+            });
+            //.makeEditable({
+            //    indicator: 'Saving...',
+            //    tooltip: 'Click to select Amount',
+            //    loadtext: 'loading...',
+            //    ajax: "/Order/EditInvoice",
+            //    "type": "POST"
+            //})
+
+        });
+
+        function showModal(id) {
+            $("#id").val(id);
+            $('.modal').modal('show')
+        }
+
+    </script>
+
+}
+

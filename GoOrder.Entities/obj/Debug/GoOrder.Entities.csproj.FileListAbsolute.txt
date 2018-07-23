@@ -1,0 +1,12 @@
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\GoOrder.Entities.dll
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\GoOrder.Entities.pdb
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\GoOrder.Data.dll
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\EntityFramework.dll
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\System.Linq.Dynamic.dll
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\GoOrder.Data.pdb
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\GoOrder.Data.dll.config
+D:\Repository\GoOrder\GoOrder.Entities\bin\Debug\EntityFramework.xml
+D:\Repository\GoOrder\GoOrder.Entities\obj\Debug\GoOrder.Entities.csprojResolveAssemblyReference.cache
+D:\Repository\GoOrder\GoOrder.Entities\obj\Debug\GoOrder.Entities.csproj.CoreCompileInputs.cache
+D:\Repository\GoOrder\GoOrder.Entities\obj\Debug\GoOrder.Entities.dll
+D:\Repository\GoOrder\GoOrder.Entities\obj\Debug\GoOrder.Entities.pdb

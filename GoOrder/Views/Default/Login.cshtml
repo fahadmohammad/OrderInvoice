@@ -1,0 +1,96 @@
+﻿@model GoOrder.Models.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <!-- Bootstrap Core CSS -->    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->    
+    <link href="~/Content/metisMenu.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->    
+    <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
+    <!-- Custom Fonts -->   
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" action="/Default/Login" method="post">
+                            <fieldset>
+                                @if (!Html.ViewData.ModelState.IsValid)
+                                {
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        @Html.ValidationSummary()
+                                    </div>
+                                 }
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="Email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="Password" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe) Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                @*<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>*@
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+
+                                <div class="social-auth-links text-center">
+                                    <p>- OR -</p>
+                                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                                        <i class="fa fa-facebook"></i> Sign in using
+                                        Facebook
+                                    </a>
+                                    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                                        <i class="fa fa-google-plus"></i> Sign in using
+                                        Google+
+                                    </a>
+                                </div>
+                                <!-- /.social-auth-links -->
+                                <a href="#">I forgot my password</a><br>
+                                <a href="register.html" class="text-center">Register a new membership</a>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <!-- Custom Theme JavaScript -->   
+    <script src="~/Scripts/sb-admin-2.js"></script>
+    <script src="~/Scripts/metisMenu.min.js"></script>
+</body>
+</html>
