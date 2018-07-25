@@ -17,7 +17,8 @@ namespace GoOrder.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = User.Identity;
-                ViewBag.Name = user.Name;
+                Session["UserName"] = user.Name;
+                //ViewBag.Name = user.Name;
 
                 //ViewBag.displayMenu = "No";
                 Session["IsAdmin"] = "No";
