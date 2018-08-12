@@ -14,6 +14,13 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-@TempData["alertType"]">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Message"]
+                    </div>
+                }
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
@@ -31,7 +38,7 @@
 <div class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="/Admin/Student/Delete" method="post">
+            <form action="/Order/Delete" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title">Delete Item</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -77,7 +84,7 @@
 
                 columnDefs: [{
                     render: function (data, type, row) {
-                        return "<a class='btn btn-info btn-dt' href='/Order/OrderDetails/" + data + "'><i class='fa fa-cart-plus'></i></a><a class='btn btn-success btn-dt' href='/Order/InvoiceDetails/" + data + "'><i class='fa fa-archive'></i></a>";
+                        return "<a class='btn btn-info btn-dt' href='/Order/OrderDetails/" + data + "'><i class='fa fa-cart-plus'></i></a><a class='btn btn-success btn-dt' href='/Order/InvoiceDetails/" + data + "'><i class='fa fa-archive'></i></a><a href='#' class='btn btn-danger btn-dt' onclick=showModal('" + data + "');><i class='fa fa-trash-o'></i></a>";
                     },
 
                     targets: 3

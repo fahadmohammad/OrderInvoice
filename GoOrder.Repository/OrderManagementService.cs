@@ -71,5 +71,18 @@ namespace GoOrder.Repository
             List<Order> orders = _orderUnitOfWork.OrderRepository.GetAll().ToList();
             return orders.Count().ToString(); 
         }
+        public void DeleteOrder(Guid? id)
+        {
+            if (id.HasValue)
+            {
+                _orderUnitOfWork.OrderRepository.Delete(id);
+                _orderUnitOfWork.Save();
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace GoOrder.Models
 
        
         public string CustomerName { get; set; }
-        public virtual List<Item> Items { get; set; }
+        public List<Item> Items { get; set; }
         //public string ItemName { get; set; }
         //public string ItemQuantity { get; set; }
         //public string ItemPrice { get; set; }
@@ -43,11 +43,16 @@ namespace GoOrder.Models
         {
             _orderManagementService.AddOrder(CustomerName, Items, Invoices);
         }
-        
+
         //public void EditInvoice(Guid id,string value, int? columnPosition)
         //{
         //    _invoiceManagementService.EditInvoice(id,value, columnPosition);
         //}
+
+        public void DeleteOrder(Guid? id)
+        {
+            _orderManagementService.DeleteOrder(id);
+        }
     }
     
 }

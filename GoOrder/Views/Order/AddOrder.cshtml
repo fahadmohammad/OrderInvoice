@@ -3,7 +3,7 @@
     ViewBag.Title = "AddOrder";
     Layout = "~/Views/Shared/_CustomLayoutOne.cshtml";
 }
-
+<link href="~/Content/add-order.css" rel="stylesheet" />
 
 @*<section class="content">
         <div class="row">
@@ -62,86 +62,48 @@
                         <div class="card-text">
                             <p>This example shows a ways to center your card with form. Here we have used <code>col-md-6 offset-md-3</code> classes to center the card as its not full width. User can always change those classes according to width and offset requirements. This example also uses form action buttons in the center bottom position of the card.</p>
                         </div>
-                        <form class="form" action="/Order/AddOrder" method="post" role="form" enctype="multipart/form-data">
-                            <div id="count-click"></div>
-                            @for (int i = 0; i < counClick+1; i++)
-                            {
-                                <div class="form-body">
-                                    <h3>Item #1</h3>
-                                    <div class="form-group">
-                                        <label for="eventRegInput1">Customer Name</label>
-                                        @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
-                                        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
-                                    </div>
+                        <form class="form" action="/Order/AddOrder" method="post" role="form" enctype="multipart/form-data">                           
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label for="eventRegInput1">Customer Name</label>
+                                    @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
+                                    @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+                                </div>
+
+                                <div id="addOrder" style="display:none">
+
+                                    <h3>Item</h3>
                                     <div class="form-group">
                                         <label for="eventRegInput1">Item Name</label>
-                                        @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Name, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Items[-1].Name, new { @class = "form-control" })
+                                        @*<input class="form-control" name="Items[#].Name value" value="@Model.Items[#].Name" />*@
                                     </div>
                                     <div class="form-group">
-                                        <label for="eventRegInput2">Item Quantity</label>
-                                        @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Quantity, new { @class = "form-control" })
+                                        <label for="eventRegInput2">Item Quantity</label>                                        
+                                        @Html.TextBoxFor(m => m.Items[-1].Quantity, new { @class = "form-control" })
+                                        @*<input class="form-control" name="Items[#].Quantity value" value="@Model.Items['#'].Quantity" />*@
                                     </div>
                                     <div class="form-group">
-                                        <label for="eventRegInput2">Item Price</label>
-                                        @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Price, new { @class = "form-control" })
-                                    </div>
-                                    <h3>Item #2</h3>
-                                    <div class="form-group">
-                                        <label for="eventRegInput1">Item Name</label>
-                                        @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Name, new { @class = "form-control" })
+                                        <label for="eventRegInput2">Item Price</label>                                        
+                                        @Html.TextBoxFor(m => m.Items[-1].Price, new { @class = "form-control" })
+                                        @*<input class="form-control" name="Items[#].Price value" value="@Model.Items['#'].Price" />*@
+
                                     </div>
                                     <div class="form-group">
-                                        <label for="eventRegInput2">Item Quantity</label>
-                                        @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Quantity, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="eventRegInput2">Item Price</label>
-                                        @*<input type="text" id="eventRegInput2" class="form-control" placeholder="title" name="title">*@
-                                        @Html.TextBoxFor(m => m.Items[i].Price, new { @class = "form-control" })
+                                        <input type="hidden" name="Items[-1].Index" value="%" />
                                     </div>
 
-                                    <h3>Invoice #1</h3>
-                                    <div class="form-group">
-                                        <label>Do You Want To Create Invoice For This Order?</label>
-                                        <div class="input-group">
-                                            <label class="display-inline-block custom-control custom-radio ml-1">
-                                                @*<input type="radio" name="customer" class="custom-control-input">*@
-                                                @Html.RadioButtonFor(m => m.Invoices[i].IsCreated, "True", new { @class = "custom-control-input" })
-                                                <span class="custom-control-indicator"></span>
-                                                <span class="custom-control-description ml-0">Yes</span>
-                                            </label>
-                                            <label class="display-inline-block custom-control custom-radio">
-                                                @*<input type="radio" name="customer" checked class="custom-control-input">*@
-                                                @Html.RadioButtonFor(m => m.Invoices[i].IsCreated, "False", new { @class = "custom-control-input" })
-                                                <span class="custom-control-indicator"></span>
-                                                <span class="custom-control-description ml-0">No</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="eventRegInput1">Invoice Amount</label>
-                                        @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
-                                        @Html.TextBoxFor(m => m.Invoices[i].Amount, new { @class = "form-control" })
-                                    </div>
-
-                                    <h3>Invoice #2</h3>
+                                    <h3> Invoice </h3>
                                     <div class="form-group">
                                         <label>Do You Want To Create Another Invoice For This Order?</label>
                                         <div class="input-group">
                                             <label class="display-inline-block custom-control custom-radio ml-1">
-                                                @*<input type="radio" name="customer" class="custom-control-input">*@
-                                                @Html.RadioButtonFor(m => m.Invoices[i].IsCreated, "True", new { @class = "custom-control-input" })
+                                                @Html.RadioButtonFor(m => m.Invoices[-1].IsCreated, "True", new { @class = "custom-control-input" })
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description ml-0">Yes</span>
                                             </label>
                                             <label class="display-inline-block custom-control custom-radio">
-                                                @*<input type="radio" name="customer" checked class="custom-control-input">*@
-                                                @Html.RadioButtonFor(m => m.Invoices[i].IsCreated, "False", new { @class = "custom-control-input" })
+                                                @Html.RadioButtonFor(m => m.Invoices[-1].IsCreated, "False", new { @class = "custom-control-input" })
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description ml-0">No</span>
                                             </label>
@@ -149,37 +111,50 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="eventRegInput1">Invoice Amount</label>
-                                        @*<input type="text" id="eventRegInput1" class="form-control" placeholder="name" name="fullname">*@
-                                        @Html.TextBoxFor(m => m.Invoices[i].Amount, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Invoices[-1].Amount, new { @class = "form-control" })
                                     </div>
-                                    <div class="form-group">
-                                        @*<div class="col-sm-6">*@
-                                        <input type="button" name="ShowMoreInstitution" value="Add More Institution" onclick="javascript: showMoreInstitution();" id="showMore" />
-                                        @*</div>*@
-                                    </div>
-
-
                                     @*<div class="form-group">
-                                            <label for="eventRegInput3">Company</label>
-                                            <input type="text" id="eventRegInput3" class="form-control" placeholder="company" name="company">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="eventRegInput4">Email</label>
-                                            <input type="email" id="eventRegInput4" class="form-control" placeholder="email" name="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="eventRegInput5">Contact Number</label>
-                                            <input type="tel" id="eventRegInput5" class="form-control" name="contact" placeholder="contact number">
-                                        </div>*@
+                                        <input type="hidden" name="Invoices[0].Index" value="%" />
+                                    </div>*@
+
+
+
 
                                 </div>
 
-                            }
+                                   
+                                
+
+        
+        @*<div class="form-group">
+            <div class="col-sm-6">
+                <input type="button" name="ShowMoreInstitution" value="Add More Institution" onclick="javascript: showMoreInstitution();" id="showMore" />
+                <i class="material-icons add">+ add</i>
+            </div>
+        </div>*@
+
+                                
+                                <div class="form-holder-append"></div>
+                                <div class="form-actions center">
+                                    <input type="button" value="Add Order" onclick="showDiv()" />
+                                </div>
+
+
+                                @*<div class="row">
+            <div class="col-xs-4">
+                <i class="material-icons add">+ add</i>
+            </div>
+        </div>*@
+
+                            </div>
+
+                            
                             <div class="form-actions center">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="icon-check2"></i> Create Order
-                                </button>
+                                </button>                                
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -191,15 +166,26 @@
 {
     <script type="text/javascript">
         var countClick = 0;
-        function showMoreInstitution() {
 
-            if (document.getElementById('showMore').click) {
+        function showDiv() {
 
-                //document.getElementById('count-click').val
-                countClick++;
-            }
+            
 
+            var index = (new Date()).getTime(); 
+            var clone = $('#addOrder').clone();
+            clone.html($(clone).html().replace(/\[-1\]/g, '[' + countClick + ']'));
+            clone.html($(clone).html().replace(/"%"/g, '"' + countClick + '"'));
+            $('.form-holder-append').append(clone.html());
+            countClick++;
 
+            //var clone1 = $('#addInvoice').clone();
+            //clone1.html($(clone1).html().replace(/\[#\]/g, '[' + countClick + ']'));
+            //clone1.html($(clone1).html().replace(/"%"/g, '"' + countClick + '"'));
+            //$('.form-holder-append').append(clone1.html());
+
+            
+            
+        }
 
     </script>
 }

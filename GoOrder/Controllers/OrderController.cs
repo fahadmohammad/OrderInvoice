@@ -32,8 +32,7 @@ namespace GoOrder.Controllers
         public ActionResult AddOrder(OrderModel orderModel)
         {
             orderModel.AddOrder();
-            return RedirectToAction("Index");
-            //return Content("yes");
+            return RedirectToAction("Index");           
         }
 
         public ActionResult OrderDetails(Guid id)
@@ -79,5 +78,23 @@ namespace GoOrder.Controllers
         //    orderModel.EditInvoice(id, value, columnPosition);
         //    return RedirectToAction("InvoiceDetails");
         //}
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                var orderModel = new OrderModel();
+                orderModel.DeleteOrder(id);
+
+                TempData["message"] = "Successfully Deleted";
+                TempData["alertType"] = "success";
+            }
+            catch
+            {
+                TempData["message"] = "Failed to Deleted";
+                TempData["alertType"] = "danger";
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

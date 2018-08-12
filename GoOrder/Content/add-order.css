@@ -1,0 +1,21 @@
+﻿body {
+    margin: 20px;
+}
+.add, .remove {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 2px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.add:hover {
+    background: #eee;
+}
+
+.remove {
+    display: none;
+}
+.form-holder-append .remove {
+    display: block;
+}
