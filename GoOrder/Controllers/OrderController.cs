@@ -7,6 +7,7 @@ using GoOrder.Models;
 
 namespace GoOrder.Controllers
 {
+    
     public class OrderController : Controller
     {
         // GET: Order
@@ -22,6 +23,7 @@ namespace GoOrder.Controllers
             return Json(jsonData, JsonRequestBehavior.AllowGet);
 
         }
+        [Authorize(Roles = "Admin,Manager")]
         [HttpGet]
         public ActionResult AddOrder()
         {
